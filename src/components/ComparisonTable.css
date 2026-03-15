@@ -1,0 +1,133 @@
+.comparison-table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-card);
+  animation: fadeInUp 0.5s ease both;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.comparison-table thead {
+  background: rgba(102, 126, 234, 0.08);
+}
+
+.comparison-table th {
+  padding: var(--space-md) var(--space-lg);
+  text-align: left;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+.comparison-table td {
+  padding: var(--space-md) var(--space-lg);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.06);
+  vertical-align: middle;
+}
+
+.comparison-table tbody tr {
+  transition: background var(--transition-fast);
+}
+
+.comparison-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.comparison-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Source cell */
+.table-source {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-weight: 600;
+}
+
+.table-source-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.table-source-dot.owm {
+  background: var(--color-owm);
+  box-shadow: 0 0 6px var(--color-owm);
+}
+.table-source-dot.weatherapi {
+  background: var(--color-weatherapi);
+  box-shadow: 0 0 6px var(--color-weatherapi);
+}
+.table-source-dot.jma {
+  background: var(--color-jma);
+  box-shadow: 0 0 6px var(--color-jma);
+}
+
+/* Temperature highlight */
+.table-temp {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+}
+
+/* Condition cell */
+.table-condition {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* Bar in table */
+.table-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.table-bar-track {
+  flex: 1;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  min-width: 60px;
+}
+
+.table-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width var(--transition-slow);
+}
+
+.table-bar-fill.precipitation {
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+}
+
+.table-bar-fill.humidity {
+  background: linear-gradient(90deg, #06b6d4, #22d3ee);
+}
+
+.table-bar-value {
+  font-weight: 600;
+  min-width: 40px;
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .comparison-table th,
+  .comparison-table td {
+    padding: var(--space-sm) var(--space-md);
+  }
+}

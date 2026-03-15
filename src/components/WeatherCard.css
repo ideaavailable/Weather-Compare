@@ -1,0 +1,225 @@
+.weather-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  transition: all var(--transition-slow);
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.5s ease both;
+}
+
+.weather-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+.weather-card[data-source="OpenWeatherMap"]::before {
+  background: linear-gradient(90deg, var(--color-owm), rgba(249, 115, 22, 0.3));
+}
+.weather-card[data-source="WeatherAPI"]::before {
+  background: linear-gradient(90deg, var(--color-weatherapi), rgba(6, 182, 212, 0.3));
+}
+.weather-card[data-source="気象庁"]::before {
+  background: linear-gradient(90deg, var(--color-jma), rgba(167, 139, 250, 0.3));
+}
+
+.weather-card[data-source="OpenWeatherMap"] {
+  background: var(--gradient-card-owm), var(--color-bg-card);
+}
+.weather-card[data-source="WeatherAPI"] {
+  background: var(--gradient-card-weatherapi), var(--color-bg-card);
+}
+.weather-card[data-source="気象庁"] {
+  background: var(--gradient-card-jma), var(--color-bg-card);
+}
+
+.weather-card:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-4px);
+}
+
+.weather-card[data-source="OpenWeatherMap"]:hover {
+  box-shadow: var(--shadow-glow-owm), var(--shadow-lg);
+}
+.weather-card[data-source="WeatherAPI"]:hover {
+  box-shadow: var(--shadow-glow-weatherapi), var(--shadow-lg);
+}
+.weather-card[data-source="気象庁"]:hover {
+  box-shadow: var(--shadow-glow-jma), var(--shadow-lg);
+}
+
+/* Card Header */
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+}
+
+.card-source {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.card-source-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.weather-card[data-source="OpenWeatherMap"] .card-source-dot {
+  background: var(--color-owm);
+  box-shadow: 0 0 8px var(--color-owm);
+}
+.weather-card[data-source="WeatherAPI"] .card-source-dot {
+  background: var(--color-weatherapi);
+  box-shadow: 0 0 8px var(--color-weatherapi);
+}
+.weather-card[data-source="気象庁"] .card-source-dot {
+  background: var(--color-jma);
+  box-shadow: 0 0 8px var(--color-jma);
+}
+
+.card-source-name {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.card-updated {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+/* Card Body — Main Weather Display */
+.card-main {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.card-icon-wrapper {
+  animation: float 3s ease-in-out infinite;
+}
+
+.card-temp-section {
+  flex: 1;
+}
+
+.card-temperature {
+  font-size: var(--font-size-4xl);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+}
+
+.card-feels-like {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-top: var(--space-xs);
+}
+
+.card-description {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-sm);
+  font-weight: 500;
+}
+
+/* Card Details Grid */
+.card-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.card-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.card-detail-label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+.card-detail-value {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* Precipitation bar */
+.card-detail-bar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-full);
+  margin-top: 4px;
+  overflow: hidden;
+}
+
+.card-detail-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width var(--transition-slow);
+}
+
+.card-detail-bar-fill.precipitation {
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+}
+
+.card-detail-bar-fill.humidity {
+  background: linear-gradient(90deg, #06b6d4, #22d3ee);
+}
+
+/* Skeleton card */
+.weather-card-skeleton {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  min-height: 300px;
+}
+
+.skeleton-line {
+  height: 16px;
+  margin-bottom: var(--space-md);
+}
+
+.skeleton-line.large {
+  height: 48px;
+  width: 60%;
+}
+
+.skeleton-line.medium {
+  width: 40%;
+}
+
+.skeleton-line.short {
+  width: 30%;
+}
+
+@media (max-width: 480px) {
+  .weather-card {
+    padding: var(--space-md);
+  }
+
+  .card-temperature {
+    font-size: var(--font-size-3xl);
+  }
+}
